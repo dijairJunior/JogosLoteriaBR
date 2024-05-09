@@ -2,9 +2,9 @@ import csv
 import random
 from collections import Counter
 
-def ler_numeros_de_csv(nome_arquivo):
+def ler_numeros_de_csv(numeros):
     numeros_por_coluna = {}
-    with open(nome_arquivo, 'r') as arquivo:
+    with open(numeros, 'r') as arquivo:
         leitor_csv = csv.reader(arquivo, delimiter=';')  # Especificando o delimitador como ';'
         cabecalho = next(leitor_csv)  # Ignorando a primeira linha que contém o cabeçalho
         for linha in leitor_csv:
@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
         # Gerar os números aleatórios com base nas análises das colunas do CSV
         numeros_gerados = gerar_numeros_baseados_em_analise(numeros_mais_frequentes)
-        print("Os números gerados são:", numeros_gerados)
+        print("Os números da MEGA SENA são:", numeros_gerados)
 
         continuar = input("Deseja gerar mais números? (S/N): ")
         if continuar.lower() != 's':
