@@ -5,36 +5,30 @@ from collections import Counter
 def ler_numeros_de_csv(numeros):
     numeros_por_coluna = {}
     with open(numeros, 'r') as arquivo:
-        leitor_csv = csv.reader(arquivo, delimiter=';')  # Especificando o delimitador como ';'
+        leitor_csv = csv.reader(arquivo, delimiter=';')  # Alterando o delimitador para ;
         cabecalho = next(leitor_csv)  # Ignorando a primeira linha que contém o cabeçalho
-        for linha in leitor_csv:
-            for coluna, valor in zip(cabecalho, linha):  # Iterando sobre o cabeçalho e os valores da linha simultaneamente
+        for indice, linha in enumerate(leitor_csv, start=0):  # Começando o índice da linha de 1
+            numeros_da_linha = linha  # Obtendo os números a partir da primeira coluna
+            for coluna, valor in zip(cabecalho, numeros_da_linha):  # Iterando sobre o cabeçalho e os valores da linha simultaneamente
                 if coluna not in numeros_por_coluna:
                     numeros_por_coluna[coluna] = []
-                numeros_por_coluna[coluna].extend(map(int, valor.split(';')))  # Dividindo por ponto e vírgula
+                numeros_por_coluna[coluna].append(int(valor))
     return numeros_por_coluna
 
-def analisar_numeros_por_coluna(numeros_por_coluna):
-    numeros_mais_frequentes = {}
-    for coluna, numeros in numeros_por_coluna.items():
-        contagem = Counter(numeros)
-        numero_mais_frequente = contagem.most_common(1)[0][0]
-        numeros_mais_frequentes[coluna] = numero_mais_frequente
-    return numeros_mais_frequentes
 
-def gerar_numeros_baseados_em_analise(numeros_mais_frequentes):
+def analisar_numeros_por_tabela(numeros_por_coluna):
+    contagem_total = Counter()
+    for numeros in numeros_por_coluna.values():
+        contagem_total.update(numeros)
+    numero_mais_frequente = contagem_total.most_common(1)[0][0]
+    return numero_mais_frequente
+
+def gerar_numeros_baseados_em_analise(numero_mais_frequente):
     numeros_aleatorios = []
-    for coluna in ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"]:
-        if coluna in numeros_mais_frequentes:
-            numero_mais_frequente = numeros_mais_frequentes[coluna]
-            # Garantir que o número gerado não seja igual a nenhum dos números gerados anteriormente
-            while True:
-                numero_aleatorio = random.choice(numeros_por_coluna[coluna])
-                if numero_aleatorio != numero_mais_frequente and numero_aleatorio not in numeros_gerados_anteriores:
-                    numeros_aleatorios.append(numero_aleatorio)
-                    break
-        else:
-            print(f"A coluna {coluna} não foi encontrada nos dados analisados.")
+    while len(numeros_aleatorios) < 15:  # Gerar 15 números
+        numero_aleatorio = random.choice(range(1, 26))  # Gerar um número aleatório entre 1 e 25
+        if numero_aleatorio != numero_mais_frequente and numero_aleatorio not in numeros_aleatorios:
+            numeros_aleatorios.append(numero_aleatorio)
     return numeros_aleatorios
 
 if __name__ == "__main__":
@@ -42,15 +36,18 @@ if __name__ == "__main__":
     nome_arquivo = "lotoFacil.csv"
     numeros_por_coluna = ler_numeros_de_csv(nome_arquivo)
 
-    numeros_gerados_anteriores = []
-
     while True:
-        # Analisar os números mais frequentes em cada coluna
-        numeros_mais_frequentes = analisar_numeros_por_coluna(numeros_por_coluna)
+        # Analisar o número mais frequente em toda a tabela
+        numero_mais_frequente = analisar_numeros_por_tabela(numeros_por_coluna)
 
-        # Gerar os números aleatórios com base nas análises das colunas do CSV
-        numeros_gerados = gerar_numeros_baseados_em_analise(numeros_mais_frequentes)
-        print("Os números da Lotofácil são:", numeros_gerados)
+        # Gerar os números aleatórios com base no número mais frequente da tabela
+        numeros_aleatorios = gerar_numeros_baseados_em_analise(numero_mais_frequente)
+
+        # Ordenar os números gerados em ordem crescente
+        numeros_aleatorios.sort()
+
+        # Mostrar os números gerados em uma única sequência
+        print("Números gerados:", numeros_aleatorios)
 
         continuar = input("Deseja gerar mais números? (S/N): ")
         if continuar.lower() != 's':
