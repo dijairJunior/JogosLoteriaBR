@@ -1,11 +1,11 @@
 ## Descrição do Projeto
-O Gerador de Números da Mega Sena é uma ferramenta desenvolvida em Python que utiliza análise estatística dos resultados passados da Mega Sena para gerar novos números aleatórios, aumentando assim as chances de acerto ao jogar na loteria.
+O Gerador de Números para Loterias Brasileiras é uma ferramenta desenvolvida em Python que utiliza análise estatística dos resultados passados da Mega Sena, Quina e Lotofácil para gerar novos números aleatórios, aumentando as chances de acerto ao jogar na loteria.
 
 ## Funcionalidades
 
-- **Análise Estatística**: O programa lê os resultados da Mega Sena de um arquivo CSV e analisa quais números foram mais frequentes em cada coluna.
-  
-- **Geração de Números**: Com base na análise dos números mais frequentes, o programa gera novos números aleatórios para jogar na Mega Sena.
+- **Análise Estatística**: O programa utiliza as bibliotecas `csv`, `pandas`, `numpy`, `random` e `collections` para ler os resultados de sorteios de um arquivo CSV e analisar quais números foram mais frequentes em cada coluna.
+
+- **Geração de Números**: Com base na análise dos números mais frequentes, o programa gera novos números aleatórios para jogar na loteria.
 
 - **Prevenção de Repetições**: Os números gerados são cuidadosamente escolhidos para evitar repetições e maximizar as chances de acerto.
 
@@ -15,7 +15,7 @@ O Gerador de Números da Mega Sena é uma ferramenta desenvolvida em Python que 
    
 2. Clone este repositório em sua máquina local.
 
-3. Execute o programa `megaSena.py` no terminal.
+3. Execute o programa `gerador_numeros.py` no terminal.
 
 4. Siga as instruções para gerar novos números aleatórios.
 
@@ -26,3 +26,4 @@ Contribuições são bem-vindas! Sinta-se à vontade para enviar pull requests c
 ## Licença
 
 Este projeto está licenciado sob a [MIT License](LICENSE).
+
