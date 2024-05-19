@@ -39,7 +39,7 @@ def gerar_numeros_baseados_em_analise(numeros_mais_frequentes):
 
 if __name__ == "__main__":
     # Ler os dados do arquivo CSV
-    nome_arquivo = "numeros.csv"
+    nome_arquivo = "MegaSena/numeros.csv"
     numeros_por_coluna = ler_numeros_de_csv(nome_arquivo)
 
     numeros_gerados_anteriores = []
