@@ -33,7 +33,7 @@ def gerar_numeros_baseados_em_analise(numero_mais_frequente):
 
 if __name__ == "__main__":
     # Ler os dados do arquivo CSV
-    nome_arquivo = "lotoFacil.csv"
+    nome_arquivo = "lotoFacil_resultados.csv"
     numeros_por_coluna = ler_numeros_de_csv(nome_arquivo)
 
     while True:
