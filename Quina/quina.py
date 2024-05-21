@@ -29,7 +29,7 @@ def gerar_numeros_baseados_em_analise(numeros_mais_frequentes_por_coluna):
 
 if __name__ == "__main__":
     # Ler os dados do arquivo CSV
-    nome_arquivo = "Quina/quina_resultados.csv"
+    nome_arquivo = "Quina/quina.csv"
     numeros_por_coluna = ler_numeros_de_csv(nome_arquivo)
 
     while True:
