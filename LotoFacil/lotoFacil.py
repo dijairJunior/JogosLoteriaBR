@@ -24,7 +24,7 @@ def gerar_numeros_baseados_em_analise(numero_mais_frequente):
     return numeros_aleatorios
 
 if __name__ == "__main__":
-    nome_arquivo = "LotoFacil/lotoFacil.csv"
+    nome_arquivo = "LotoFacil/Lotofácil.csv"
     numeros_por_coluna = ler_numeros_de_csv(nome_arquivo)
 
     while True:
